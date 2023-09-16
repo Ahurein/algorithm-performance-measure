@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "MPtwCRyA658mnBkKmGUX1Y554yAZhVQVVM92R4G3HUQB6GW2KRdZH5u9N/Gi5tRBjTk/ygpEOBhlal6DaGkGdg==",
+  "success": true,
+  "projectFilePath": "D:\\UpSkilling\\C#\\projects\\WinFormsApp1\\WinFormsApp1\\WinFormsApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\EbenezerAhurein\\.nuget\\packages\\oxyplot.core\\2.1.2\\oxyplot.core.2.1.2.nupkg.sha512",
+    "C:\\Users\\EbenezerAhurein\\.nuget\\packages\\oxyplot.windowsforms\\2.1.2\\oxyplot.windowsforms.2.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
