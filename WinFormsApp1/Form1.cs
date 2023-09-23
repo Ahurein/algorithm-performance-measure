@@ -55,38 +55,39 @@ namespace WinFormsApp1
                     foreach (var seriesName in seriesNames)
                     {
                         List<int> clonedData = new List<int>(data);
+                        List<int> finalValue = new();
 
                         stopwatch.Start();
 
                         switch (seriesName)
                         {
                             case "BubbleSort":
-                                BubbleSort(clonedData);
+                                finalValue = BubbleSort(clonedData);
                                 break;
                             case "SelectionSort":
-                                SelectionSort(clonedData);
+                                finalValue = SelectionSort(clonedData);
                                 break;
                             case "InsertionSort":
-                                InsertionSort(clonedData);
+                                finalValue = InsertionSort(clonedData);
                                 break;
                             case "QuickSort":
-                                QuickSort(clonedData, 0, clonedData.Count - 1);
+                                finalValue = QuickSort(clonedData, 0, clonedData.Count - 1);
                                 break;
                             case "MergeSort":
-                                MergeSort(clonedData, 0, clonedData.Count - 1);
+                                finalValue = MergeSort(clonedData, 0, clonedData.Count - 1);
                                 break;
                             case "HeapSort":
-                                HeapSort(clonedData);
+                                finalValue = HeapSort(clonedData);
                                 break;
                             case "RadixSort":
-                                RadixSort(clonedData);
+                                finalValue = RadixSort(clonedData);
                                 break;
                         }
                         stopwatch.Stop();
 
                         double executionTime = stopwatch.Elapsed.TotalMilliseconds;
-
-                        writer.WriteLine($"{dataSize} set, {seriesName}: {executionTime} ms");
+                        string finalValueString = string.Join(", ", finalValue);
+                        writer.WriteLine($"{dataSize} set, {seriesName}: {executionTime} ms answer: {finalValueString}");
 
                         switch (seriesName)
                         {
@@ -136,7 +137,7 @@ namespace WinFormsApp1
             return Enumerable.Range(1, size).OrderBy(x => random.Next()).ToList();
         }
 
-        static void BubbleSort(List<int> data)
+        static List<int> BubbleSort(List<int> data)
         {
             int n = data.Count;
             for (int i = 0; i < n - 1; i++)
@@ -151,9 +152,11 @@ namespace WinFormsApp1
                     }
                 }
             }
+
+            return data;
         }
 
-        static void SelectionSort(List<int> data)
+        static List<int> SelectionSort(List<int> data)
         {
             int n = data.Count;
             for (int i = 0; i < n - 1; i++)
@@ -170,9 +173,11 @@ namespace WinFormsApp1
                 data[i] = data[minIndex];
                 data[minIndex] = temp;
             }
+
+            return data;
         }
 
-        static void InsertionSort(List<int> data)
+        static List<int> InsertionSort(List<int> data)
         {
             int n = data.Count;
             for (int i = 1; i < n; i++)
@@ -186,9 +191,11 @@ namespace WinFormsApp1
                 }
                 data[j + 1] = key;
             }
+
+            return data;
         }
 
-        static void QuickSort(List<int> data, int low, int high)
+        static List<int> QuickSort(List<int> data, int low, int high)
         {
             if (low < high)
             {
@@ -196,6 +203,8 @@ namespace WinFormsApp1
                 QuickSort(data, low, pivot - 1);
                 QuickSort(data, pivot + 1, high);
             }
+
+            return data;
         }
 
         static int Partition(List<int> data, int low, int high)
@@ -218,7 +227,7 @@ namespace WinFormsApp1
             return i + 1;
         }
 
-        static void HeapSort(List<int> data)
+        static List<int> HeapSort(List<int> data)
         {
             int n = data.Count;
 
@@ -233,6 +242,7 @@ namespace WinFormsApp1
 
                 Heapify(data, i, 0);
             }
+            return data;
         }
 
         static void Heapify(List<int> data, int n, int i)
@@ -259,12 +269,13 @@ namespace WinFormsApp1
             }
         }
 
-        static void RadixSort(List<int> data)
+        static List<int> RadixSort(List<int> data)
         {
             int max = data.Max();
 
             for (int exp = 1; max / exp > 0; exp *= 10)
                 CountingSort(data, exp);
+            return data;
         }
 
         static void CountingSort(List<int> data, int exp)
@@ -292,7 +303,7 @@ namespace WinFormsApp1
                 data[i] = output[i];
         }
 
-        static void MergeSort(List<int> data, int left, int right)
+        static List<int> MergeSort(List<int> data, int left, int right)
         {
             if (left < right)
             {
@@ -303,6 +314,8 @@ namespace WinFormsApp1
 
                 Merge(data, left, middle, right);
             }
+
+            return data;
         }
 
         static void Merge(List<int> data, int left, int middle, int right)
