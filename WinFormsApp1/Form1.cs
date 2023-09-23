@@ -87,7 +87,7 @@ namespace WinFormsApp1
 
                         double executionTime = stopwatch.Elapsed.TotalMilliseconds;
                         string finalValueString = string.Join(", ", finalValue);
-                        writer.WriteLine($"{dataSize} set, {seriesName}: {executionTime} ms answer: {finalValueString}");
+                        writer.WriteLine($"{dataSize} set, {seriesName}: {executionTime} ms, answer: {finalValueString}");
 
                         switch (seriesName)
                         {
